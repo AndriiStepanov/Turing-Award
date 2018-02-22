@@ -3,5 +3,10 @@
 
 #include "lib.hpp"
 
-void solve(istream& in, ostream& out);
+using std::vector;
+using std::string;
+
+extern const vector<string> test_inputs;
+void solve(std::istream& in, std::ostream& out);
+
 #endif
