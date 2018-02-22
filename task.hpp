@@ -3,10 +3,11 @@
 
 #include "lib.hpp"
 
+using std::pair;
 using std::vector;
 using std::string;
 
-extern const vector<string> test_inputs;
+extern const vector<pair<string, string>> test_data;
 void solve(std::istream& in, std::ostream& out);
 
 #endif
