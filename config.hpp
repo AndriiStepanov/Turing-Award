@@ -1,5 +1,6 @@
 #ifndef CONFIG
 #define CONFIG
+
 #include "lib.hpp"
 #include "test_lib.hpp"
 
@@ -26,4 +27,5 @@ const std::vector<Problem> all_problems{
   { "legacy", { 1, 0 }, D::solve },
   { "rocks", { 1, 0 }, E::solve },
 };
+
 #endif

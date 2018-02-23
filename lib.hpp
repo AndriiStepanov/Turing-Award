@@ -1,5 +1,6 @@
 #ifndef LIB
 #define LIB
+
 #pragma GCC optimize("Ofast")
 #pragma GCC target("sse,sse2,sse3,ssse3,sse4,popcnt,abm,mmx")
 
@@ -197,4 +198,5 @@ std::ostream &operator<<(std::ostream &out, const std::multimap<T1, T2> &v) {
   }
   return out << "]";
 }
+
 #endif

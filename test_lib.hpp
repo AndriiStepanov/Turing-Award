@@ -4,28 +4,37 @@
 #include "lib.hpp"
 #include "problem.hpp"
 
-void run_test(const Problem& problem, const std::string in_str,
-              const std::string out_str) {
-  std::ifstream in(in_str);
-  std::ofstream out(out_str);
-
-  std::ostream &log = std::clog;
-
-  log << "start running with file " + in_str + "\n";
-  std::clock_t start_time = clock();
-
+void run_test(const Problem& problem, std::istream& in, std::ostream& out) {
   int tests_number;
   in >> tests_number;
 
   for (int i = 0; i < tests_number; i++) {
     problem.solve(in, out);
   }
+}
+
+void run_test_files(const Problem& problem,
+                    const std::string in_str, const std::string out_str) {
+  std::ifstream in(in_str);
+  std::ofstream out(out_str);
+
+  std::ostream &log = std::clog;
+  log << "start running with file " + in_str + "\n";
+  std::clock_t start_time = clock();
+
+  run_test(problem, in, out);
 
   std::clock_t finish_time = clock();
   long double elapsed_time = (long double)(finish_time - start_time) / CLOCKS_PER_SEC;
 
   log << ("end running into file:  " + out_str + " time: " +
           std::to_string(elapsed_time) + "s\n") << std::flush;
+}
+
+void run_console_tests(const std::vector<Problem> &problems) {
+  for (auto problem : problems) {
+    problem.solve(std::cin, std::cout);
+  }
 }
 
 void run_tests(const std::vector<Problem> &problems) {
@@ -55,7 +64,7 @@ void run_tests(const std::vector<Problem> &problems) {
 
     for (auto [in_str, out_str] : problem.inputs()) {
       out_files_via_string += " " + out_str;
-      threads.emplace_back(run_test, problem, in_str, out_str);
+      threads.emplace_back(run_test_files, problem, in_str, out_str);
     }
 
     for (auto& thread : threads) {

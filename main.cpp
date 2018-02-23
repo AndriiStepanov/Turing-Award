@@ -14,6 +14,7 @@ int main() {
   Problem e{ "rocks", { 1, 0 }, E::solve };
 
   run_tests({a, b, c, d, e});
+  run_console_tests({a});
 
   return 0;
 }
