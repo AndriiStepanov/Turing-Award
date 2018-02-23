@@ -1,66 +1,75 @@
 #ifndef TEST_LIB
 #define TEST_LIB
+
 #include "lib.hpp"
+#include "problem.hpp"
 
-enum run_option {
-  run, skip
-};
+void run_test(const Problem& problem, const std::string in_str,
+              const std::string out_str) {
+  std::ifstream in(in_str);
+  std::ofstream out(out_str);
 
-enum io_option {
-  file, console
-};
+  std::ostream &log = std::clog;
 
-using solve_function = function<void(istream&, ostream&)>;
+  log << "start running with file " + in_str + "\n";
+  std::clock_t start_time = clock();
 
-struct problem {
-  string file_name;
-  run_option run_type;
-  io_option io_type;
-  vector<pair<int, int>> tests;
-  solve_function solve;
-};
+  int tests_number;
+  in >> tests_number;
 
-void run_tests(vector<problem> &problems) {
-  freopen("../ans/stderr.txt", "w", stderr);
-  auto run = [](solve_function solve, istream &in, ostream &out) {
-    int tests_number;
-    in >> tests_number;
-    for (int i = 0; i < tests_number; i++) {
-      solve(in, out);
-    }
+  for (int i = 0; i < tests_number; i++) {
+    problem.solve(in, out);
+  }
+
+  std::clock_t finish_time = clock();
+  long double elapsed_time = (long double)(finish_time - start_time) / CLOCKS_PER_SEC;
+
+  log << ("end running into file:  " + out_str + " time: " +
+          std::to_string(elapsed_time) + "s\n") << std::flush;
+}
+
+void run_tests(const std::vector<Problem> &problems) {
+  auto remove_following_dir = [](const std::string path) -> std::string {
+    auto begin = path.begin();
+    for (; *begin != '/'; ++begin) { continue; }
+    std::string str;
+    for (auto it = std::next(begin); it != path.end(); ++it) { str += *it; }
+    return str;
   };
-  auto get_number = [](int id) {
-    string result = to_string(id);
-    if (result.length() == 1) {
-      result = "0" + result;
-    }
-    return result;
+
+  auto following_dir = [](const std::string path) -> std::string {
+    auto end = path.begin();
+    for (; *end != '/'; ++end) { continue; }
+    std::string str;
+    for (auto it = path.begin(); it != end; ++it) { str += *it; }
+    return str;
   };
-  for (problem p : problems) {
-    if (p.run_type == run_option::skip) continue;
-    if (p.io_type == io_option::console) {
-      p.solve(cin, cout);
-    } else if (p.io_type == io_option::file) {
-      set<int> tests_set;
-      for (pair<int, int> interval : p.tests) {
-        for (int i = interval.first; i <= interval.second; i++) {
-          tests_set.insert(i);
-        }
-      }
-      string answers = "";
-      for (int test_id : tests_set) {
-        string name = p.file_name + get_number(test_id);
-        ifstream in("../in/" + name + ".in");
-        string out_name = "../ans/" + name + ".ans";
-        ofstream out(out_name);
-        answers += " " + out_name;
-        cerr << "start run in file " + name + ".in" << endl;
-        double start_time = clocks();
-        run(p.solve, in, out);
-        cerr << "end run in file " + name + ".in time: " << clocks() - start_time << "s" << endl;
-        system(("zip -r ../ans/submission.zip " + out_name + " 1>&2").c_str());
-      }
+
+  std::vector<std::thread> problems_threads;
+  problems_threads.reserve(problems.size());
+
+  for (auto problem : problems) {
+    std::vector<std::thread> threads;
+    threads.reserve(problem.inputs().size());
+    std::string out_files_via_string = "";
+
+    for (auto [in_str, out_str] : problem.inputs()) {
+      out_files_via_string += " " + out_str;
+      threads.emplace_back(run_test, problem, in_str, out_str);
+    }
+
+    for (auto& thread : threads) {
+      thread.join();
+    }
+
+    if (!problem.inputs().empty()) {
+      system(("zip -r ans/submission.zip " + out_files_via_string).c_str());
     }
   }
+
+  for (auto& problem_thread : problems_threads) {
+    problem_thread.join();
+  }
 }
+
 #endif

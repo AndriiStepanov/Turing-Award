@@ -89,25 +89,6 @@
 #include <unordered_set>
 #endif
 
-using std::pair;
-using std::ostream;
-using std::istream;
-using std::vector;
-using std::set;
-using std::multiset;
-using std::map;
-using std::multimap;
-using std::function;
-using std::string;
-using std::priority_queue;
-using std::cin;
-using std::cout;
-using std::to_string;
-using std::ifstream;
-using std::ofstream;
-using std::cerr;
-using std::endl;
-
 #define all(v) (v).begin(), (v).end()
 #define uniq(v) sort(all(v)); v.resize(unique(all(v)) - v.begin())
 
@@ -115,23 +96,25 @@ typedef long double ld;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef unsigned int uint;
-typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
+typedef std::pair<int, int> pii;
+typedef std::pair<ll, ll> pll;
+
 inline double clocks() { return clock() * 1.0 / CLOCKS_PER_SEC; }
+inline int system(const std::string str) { return system(str.c_str()); }
 
 template<class T1, class T2>
-ostream &operator<<(ostream &out, const pair<T1, T2> &a) {
+std::ostream &operator<<(std:: ostream &out, const std::pair<T1, T2> &a) {
   out << "(" << a.first << "," << a.second << ")";
   return out;
 }
 
 template<class T1, class T2>
-istream &operator>>(istream &in, pair<T1, T2> &p) {
+std::istream &operator>>(std::istream &in, std::pair<T1, T2> &p) {
   return in >> p.first >> p.second;
 }
 
 template<class T1, class T2>
-ostream &operator<<(ostream &out, const vector<T1, T2> &a) {
+std::ostream &operator<<(std:: ostream &out, const std::vector<T1, T2> &a) {
   bool f = 0;
   out << "[";
   for (auto &x : a) {
@@ -144,7 +127,7 @@ ostream &operator<<(ostream &out, const vector<T1, T2> &a) {
 }
 
 template<class T1, class T2>
-istream &operator>>(istream &in, vector<T1, T2> &a) {
+std::istream &operator>>(std::istream &in, std::vector<T1, T2> &a) {
   for (int i = 0; i < a.size(); i++) {
     in >> a[i];
   }
@@ -152,7 +135,7 @@ istream &operator>>(istream &in, vector<T1, T2> &a) {
 }
 
 template<class T1, class T2>
-ostream &operator<<(ostream &out, const set<T1, T2> &a) {
+std::ostream &operator<<(std::ostream &out, const std::set<T1, T2> &a) {
   bool f = 0;
   out << "{";
   for (auto &x : a) {
@@ -165,7 +148,7 @@ ostream &operator<<(ostream &out, const set<T1, T2> &a) {
 }
 
 template<class T1, class T2>
-ostream &operator<<(ostream &out, const multiset<T1, T2> &v) {
+std::ostream &operator<<(std::ostream &out, const std::multiset<T1, T2> &v) {
   bool f = 1;
   out << "[";
   for (auto &i : v) {
@@ -177,7 +160,7 @@ ostream &operator<<(ostream &out, const multiset<T1, T2> &v) {
 }
 
 template<class T1, class T2>
-ostream &operator<<(ostream &out, priority_queue<T1, T2> v) {
+std::ostream &operator<<(std::ostream &out, std::priority_queue<T1, T2> v) {
   bool f = 1;
   out << "[";
   while (!v.empty()) {
@@ -191,7 +174,7 @@ ostream &operator<<(ostream &out, priority_queue<T1, T2> v) {
 }
 
 template<class T1, class T2, class T3>
-ostream &operator<<(ostream &out, const map<T1, T2, T3> &a) {
+std::ostream &operator<<(std::ostream &out, const std::map<T1, T2, T3> &a) {
   bool f = 0;
   out << "{";
   for (auto &x : a) {
@@ -204,7 +187,7 @@ ostream &operator<<(ostream &out, const map<T1, T2, T3> &a) {
 }
 
 template<class T1, class T2>
-ostream &operator<<(ostream &out, const multimap<T1, T2> &v) {
+std::ostream &operator<<(std::ostream &out, const std::multimap<T1, T2> &v) {
   bool f = 1;
   out << "[";
   for (auto &ii : v) {
