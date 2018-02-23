@@ -15,10 +15,10 @@ vector<problem> problems {
         },
         {
                 "election",
-                run_option::skip,
-                io_option::file,
+                run_option::run,
+                io_option::console,
                 {{1, 10}},
                 solve_b
-        }
+        },
 };
 #endif

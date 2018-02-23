@@ -21,7 +21,7 @@ struct problem {
 };
 
 void run_tests(vector<problem>& problems) {
-    freopen("../ans/stdout.txt", "w", stdout);
+    freopen("../ans/stdout.txt", "w", stderr);
     auto run = [](solve_function solve, istream& in, ostream& out) {
         int tests_number;
         in >> tests_number;
@@ -39,7 +39,7 @@ void run_tests(vector<problem>& problems) {
     for (problem p : problems) {
         if (p.run_type == run_option::skip) continue;
         if (p.io_type == io_option::console) {
-            run(p.solve, cin, cout);
+            p.solve(cin, cout);
         } else if (p.io_type == io_option::file) {
             set<int> tests_set;
             for (pair<int, int> interval : p.tests) {
@@ -51,13 +51,14 @@ void run_tests(vector<problem>& problems) {
             for (int test_id : tests_set) {
                 string name = p.file_name + get_number(test_id);
                 ifstream in("../in/" + name + ".in");
-                ofstream out("../ans/" + name + ".ans");
-                answers += " ../ans/" + name + ".ans";
-                cout << "start run in file " + name + ".in" << endl;
+                string out_name = "../ans/" + name + ".ans";
+                ofstream out(out_name);
+                answers += " " + out_name;
+                cerr << "start run in file " + name + ".in" << endl;
                 double start_time = clocks();
                 run(p.solve, in, out);
-                cout << "end run in file " + name + ".in time: " << clocks() - start_time << "s" << endl;
-                system(("zip -r ../ans/submission" + answers).c_str());
+                cerr << "end run in file " + name + ".in time: " << clocks() - start_time << "s" << endl;
+                system(("zip -r ../ans/submission.zip " + out_name + " 1>&2").c_str());
             }
         }
     }
