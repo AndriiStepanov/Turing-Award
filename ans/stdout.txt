@@ -1,30 +1,30 @@
 start run in file row01.in
-end run in file row01.in time: 8.8e-05s
+end run in file row01.in time: 6.2e-05s
 updating: ../ans/row01.ans (stored 0%)
 start run in file row02.in
-end run in file row02.in time: 7.1e-05s
+end run in file row02.in time: 6.2e-05s
 updating: ../ans/row01.ans (stored 0%)
 updating: ../ans/row02.ans (stored 0%)
 start run in file row03.in
-end run in file row03.in time: 9.6e-05s
+end run in file row03.in time: 9.9e-05s
 updating: ../ans/row01.ans (stored 0%)
 updating: ../ans/row02.ans (stored 0%)
 updating: ../ans/row03.ans (deflated 5%)
 start run in file row04.in
-end run in file row04.in time: 7.7e-05s
+end run in file row04.in time: 0.000103s
 updating: ../ans/row01.ans (stored 0%)
 updating: ../ans/row02.ans (stored 0%)
 updating: ../ans/row03.ans (deflated 5%)
 updating: ../ans/row04.ans (stored 0%)
 start run in file row05.in
-end run in file row05.in time: 8.7e-05s
+end run in file row05.in time: 6.5e-05s
 updating: ../ans/row01.ans (stored 0%)
 updating: ../ans/row02.ans (stored 0%)
 updating: ../ans/row03.ans (deflated 5%)
 updating: ../ans/row04.ans (stored 0%)
 updating: ../ans/row05.ans (stored 0%)
 start run in file row06.in
-end run in file row06.in time: 7.3e-05s
+end run in file row06.in time: 5.6e-05s
 updating: ../ans/row01.ans (stored 0%)
 updating: ../ans/row02.ans (stored 0%)
 updating: ../ans/row03.ans (deflated 5%)
@@ -32,7 +32,7 @@ updating: ../ans/row04.ans (stored 0%)
 updating: ../ans/row05.ans (stored 0%)
 updating: ../ans/row06.ans (stored 0%)
 start run in file row07.in
-end run in file row07.in time: 6.9e-05s
+end run in file row07.in time: 5.7e-05s
 updating: ../ans/row01.ans (stored 0%)
 updating: ../ans/row02.ans (stored 0%)
 updating: ../ans/row03.ans (deflated 5%)
@@ -41,7 +41,7 @@ updating: ../ans/row05.ans (stored 0%)
 updating: ../ans/row06.ans (stored 0%)
 updating: ../ans/row07.ans (stored 0%)
 start run in file row08.in
-end run in file row08.in time: 5.6e-05s
+end run in file row08.in time: 4.4e-05s
 updating: ../ans/row01.ans (stored 0%)
 updating: ../ans/row02.ans (stored 0%)
 updating: ../ans/row03.ans (deflated 5%)
@@ -51,7 +51,7 @@ updating: ../ans/row06.ans (stored 0%)
 updating: ../ans/row07.ans (stored 0%)
 updating: ../ans/row08.ans (stored 0%)
 start run in file row09.in
-end run in file row09.in time: 5.1e-05s
+end run in file row09.in time: 3.1e-05s
 updating: ../ans/row01.ans (stored 0%)
 updating: ../ans/row02.ans (stored 0%)
 updating: ../ans/row03.ans (deflated 5%)
@@ -62,7 +62,7 @@ updating: ../ans/row07.ans (stored 0%)
 updating: ../ans/row08.ans (stored 0%)
 updating: ../ans/row09.ans (stored 0%)
 start run in file row10.in
-end run in file row10.in time: 4.2e-05s
+end run in file row10.in time: 5e-05s
 updating: ../ans/row01.ans (stored 0%)
 updating: ../ans/row02.ans (stored 0%)
 updating: ../ans/row03.ans (deflated 5%)
