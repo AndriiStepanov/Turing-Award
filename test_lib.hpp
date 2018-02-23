@@ -2,15 +2,15 @@
 #define TEST_LIB
 #include "lib.hpp"
 
-enum class run_option {
+enum run_option {
     run, skip
 };
 
-enum class io_option {
+enum io_option {
     file, console
 };
 
-typedef function<void(istream&, ostream&)> solve_function;
+using solve_function = function<void(istream&, ostream&)>;
 
 struct problem {
     string file_name;
