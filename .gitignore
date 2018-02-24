@@ -1,4 +1,7 @@
 cmake-build-debug
+cmake-build-release
 .idea
 .DS_Store
 CMakeLists.txt
+ans
+out

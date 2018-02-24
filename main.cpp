@@ -1,27 +1,20 @@
-#include "task.hpp"
-
-using Seconds = long double;
-
-auto time_run_test(std::istream& in, std::ostream& out) -> Seconds;
+#include "lib.hpp"
+#include "config.hpp"
+#include "test_lib.hpp"
+#include "problem.hpp"
 
 int main() {
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(nullptr);
+  std::ios_base::sync_with_stdio(false);
+  std::cin.tie(nullptr);
 
-    for (auto [in, out] : test_data) {
-        std::fstream file_in(in, std::ios_base::in);
-        std::fstream file_out(out, std::ios_base::out);
+  Problem a{ "row", { 1, 10 }, A::solve };
+  Problem b{ "election", { 1, 0 }, B::solve };
+  Problem c{ "crossword", { 1, 0 }, C::solve };
+  Problem d{ "legacy", { 1, 0 }, D::solve };
+  Problem e{ "rocks", { 1, 0 }, E::solve };
 
-        std::clog << "Finished with " << in << " in " << std::flush << std::fixed
-        << time_run_test(file_in, file_out) << "s to " << out << std::endl;
-    }
+  run_tests({a, b, c, d, e});
+  run_console_tests({a});
 
-    return 0;
-}
-
-auto time_run_test(std::istream& in, std::ostream& out) -> Seconds {
-    std::clock_t start = clock();
-    solve(in, out);
-    std::clock_t finish = clock();
-    return (Seconds)(finish - start) / CLOCKS_PER_SEC;
+  return 0;
 }
