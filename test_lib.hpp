@@ -29,6 +29,8 @@ void run_test_files(const Problem& problem,
 
   log << ("end running into file:  " + out_str + " time: " +
           std::to_string(elapsed_time) + "s\n") << std::flush;
+
+  system(("zip -r ans/" + problem.prefix + ".zip " + out_str).c_str());
 }
 
 void run_console_tests(const std::vector<Problem> &problems) {
@@ -72,7 +74,6 @@ void run_tests(const std::vector<Problem> &problems) {
     }
 
     if (!problem.inputs().empty()) {
-      system(("zip -r ans/submission.zip " + out_files_via_string).c_str());
     }
   }
 
